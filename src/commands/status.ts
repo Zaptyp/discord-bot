@@ -50,13 +50,13 @@ export default async function status(
     mobileUrl = 'https://lekcjaplus.vulcan.net.pl';
     expectedTitle = 'Uczeń';
   }
-
+/**
   try {
     await uonetStatus.sendStatusMessage(
-      [message.channel], symbol, undefined, host, mobileUrl, expectedTitle,
+      [ChannelType.GuildNews], symbol, undefined, host, mobileUrl, expectedTitle,
     );
   } catch (error) {
     console.error(error);
     await message.channel.send(`Błąd: \`${error instanceof Error ? error.message : 'Bardzo nietypowy błąd :confused:'}\``);
-  }
+  }*/
 }

@@ -1,7 +1,7 @@
 import Discord from 'discord.js';
 import Client from '../client';
 import * as uonetStatus from '../utils/uonet-status';
-
+/*8
 const statusChannels: Discord.TextChannel[] = [];
 let lastStatusCode = 0;
 
@@ -29,7 +29,7 @@ export default function readyHandler(client: Client): void {
     void performCheck();
   }, statusCheckInterval);
 
-  void client.user?.setActivity('od mniej niż minuty', {
+  void ActivityType.Watching('od mniej niż minuty', {
     type: 'WATCHING',
   });
 
@@ -38,21 +38,21 @@ export default function readyHandler(client: Client): void {
   setInterval(() => {
     if (activeTimeMinutes >= 60 * 48) {
       const activeTimeDays = Math.floor(activeTimeMinutes / 60 / 24);
-      void client.user?.setActivity(`od ${activeTimeDays} dni`, {
+      void ActivityType.Watching(`od ${activeTimeDays} dni`, {
         type: 'WATCHING',
       });
     } if (activeTimeMinutes >= 60) {
       const activeTimeHours = Math.floor(activeTimeMinutes / 60);
-      void client.user?.setActivity(activeTimeHours === 1 ? 'od godziny' : `od ${activeTimeHours} godzin`, {
+      void ActivityType.Watching(activeTimeHours === 1 ? 'od godziny' : `od ${activeTimeHours} godzin`, {
         type: 'WATCHING',
       });
     } else {
-      void client.user?.setActivity(activeTimeMinutes === 1 ? 'od minuty' : `od ${activeTimeMinutes} minut`, {
+      void client.user.setPresence([activeTimeMinutes === 1 ? 'od minuty' : `od ${activeTimeMinutes} minut`, {
         type: 'WATCHING',
-      });
+      }]);
     }
     activeTimeMinutes += 1;
   }, 60000);
 
   console.log('Uruchomiono bota :)');
-}
+}*/

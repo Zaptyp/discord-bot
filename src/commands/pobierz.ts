@@ -59,12 +59,12 @@ export default async function pobierz(client: Client, message: Discord.Message):
     const buildMessageRich = getBuildLinks(devDevelopBuild, devPrBuilds, true);
     const buildMessagePlain = getBuildLinks(devDevelopBuild, devPrBuilds, false);
 
-    const embed = new Discord.MessageEmbed()
-      .setAuthor('Pobierz Wulkanowego!', 'https://cdn.discordapp.com/attachments/523847362632744975/546459616188563477/nr_logo_wulkanowy2.png')
-      .addField('Strona internetowa', 'https://wulkanowy.github.io/')
+    const embed = new Discord.EmbedBuilder()
+      .setAuthor({ name: 'Pobierz Wulkanowego!', iconURL: 'https://cdn.discordapp.com/attachments/523847362632744975/546459616188563477/nr_logo_wulkanowy2.png'})
+      .addFields({ name: 'Strona internetowa', value: 'https://wulkanowy.github.io/'})
       .setColor('#F44336')
-      .addField('Wersja beta',
-        `${`Aktualna wersja: **v${betaBuild.version}** opublikowana **${
+      .addFields({ name: 'Wersja beta',
+         value: `${`Aktualna wersja: **v${betaBuild.version}** opublikowana **${
           moment(betaBuild.publishedAt)
             .tz('Europe/Warsaw')
             .calendar()
@@ -72,18 +72,18 @@ export default async function pobierz(client: Client, message: Discord.Message):
         }**\n`
         + '[Sklep Play](https://play.google.com/store/apps/details?id=io.github.wulkanowy) | '
         + `[GitHub](${betaBuild.url}) | `}${betaBuild.directUrl === null
-          ? '' : `[Direct](${betaBuild.directUrl})`}`);
+          ? '' : `[Direct](${betaBuild.directUrl})`}`});
 
     if (buildMessageRich.length < 1000) {
-      embed.addField('Wersja DEV', buildMessageRich);
+      embed.addFields({ name: 'Wersja DEV', value: buildMessageRich});
       await message.channel.send({ embeds: [embed] });
     } else if (buildMessagePlain.length < 1000) {
-      embed.addField('Wersja DEV', buildMessagePlain);
+      embed.addFields({ name: 'Wersja DEV', value: buildMessagePlain});
       await message.channel.send({ embeds: [embed] });
     } else if (buildMessagePlain.length < 2000) {
       await message.channel.send({ content: buildMessagePlain, embeds: [embed] });
     } else {
-      embed.addField('Wersja DEV', 'Zbyt dużo buildów. Odwiedź [naszą stronę domową](https://wulkanowy.github.io/#download) by pobrać któregoś z nich');
+      embed.addFields({ name: 'Wersja DEV', value: 'Zbyt dużo buildów. Odwiedź [naszą stronę domową](https://wulkanowy.github.io/#download) by pobrać któregoś z nich'});
       await message.channel.send({ embeds: [embed] });
     }
   } catch (error) {

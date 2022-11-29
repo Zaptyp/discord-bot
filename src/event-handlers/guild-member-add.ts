@@ -10,7 +10,7 @@ export default async function guildMemberAddHandler(
   const avatar = member.user.avatarURL();
   const { id } = member.user;
   if (!member.user.bot) {
-    const embedDM = new Discord.MessageEmbed()
+    const embedDM = new Discord.EmbedBuilder()
       .setTitle('Witaj na serwerze Wulkanowego!')
       .setDescription('Używamy tutaj specjalnych ról, by móc oznaczyć osoby korzystające z danej wersji e-dziennika (np. `vulcan.net.pl`, `eszkola.opolskie.pl`).\nUłatwia to rozwiązywanie problemów i testowanie nowych funkcji.\n\nBy wyświetlić listę wszystkich ról, przejdź na kanał #choose-role\n - By przydzielić sobie odpowienią rolę, kliknij w odpowiednią reakcję.\n\n**Dziękujemy za wybranie naszej aplikacji!**')
       .setColor('#F44336');
@@ -21,9 +21,9 @@ export default async function guildMemberAddHandler(
     (ch) => ch.name === client.config.channels.greetings,
   );
   if (!channel || !(channel instanceof Discord.TextChannel)) return;
-  if (!member.guild.me?.permissionsIn(channel).has(['SEND_MESSAGES'])) return;
-  const embedPublic = new Discord.MessageEmbed()
-    .setAuthor('Na serwerze pojawił się', avatar || undefined)
+  if (!member.guild.members.me?.permissionsIn(channel).has(['SendMessages'])) return;
+  const embedPublic = new Discord.EmbedBuilder()
+    .setAuthor({name: 'Na serwerze pojawił się', iconURL: avatar || undefined,})
     .setDescription(`<@!${id}>`)
     .setColor('#F44336');
   await channel.send({ embeds: [embedPublic] });

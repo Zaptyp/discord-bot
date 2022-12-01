@@ -8,7 +8,7 @@
     "lint": "eslint -c .eslintrc.json --ext .ts src/**",
     "lint:fix": "eslint -c .eslintrc.json --ext .ts src/** --fix",
     "compile": "tsc --noEmit",
-    "start": "node --tls-min-v1.0 -r ts-node/register src/index.ts"
+    "start": "node --tls-min-v1.3 -r ts-node/register src/index.ts"
   },
   "author": "Dominik Korsa <dominik.korsa@gmail.com> (https://github.com/dominik-korsa)",
   "contributors": [

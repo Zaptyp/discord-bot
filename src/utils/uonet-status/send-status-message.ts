@@ -32,12 +32,12 @@ export default async function sendStatusMessage(
       mobileApiStatus?.code || 0,
     ) === StatusCode.Working ? '#2ecc71' : '#f1c40f';
 
-    const embed = new Discord.MessageEmbed()
+    const embed = new Discord.EmbedBuilder()
       .setTitle(`Status dzienniczka ${host} (dla symbolu *${symbol}*)`)
       .setColor(statusColor)
-      .addField('Nowy moduł uczeń:', interpretCodeMessage(studentNewStatus))
-      .addField('Wiadomości plus:', interpretCodeMessage(messagesStatus))
-      .addField('API mobilne:', interpretCodeMessage(mobileApiStatus));
+      .addFields({ name: 'Nowy moduł uczeń:', value: interpretCodeMessage(studentNewStatus) })
+      .addFields({ name: 'Wiadomości plus:', value: interpretCodeMessage(messagesStatus) })
+      .addFields({ name: 'API mobilne (HEBE):', value: interpretCodeMessage(mobileApiStatus) });
 
     if (Math.max(
       studentNewStatus.code,

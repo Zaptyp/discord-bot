@@ -73,18 +73,18 @@ export default async function issueHandler(
       const embed = new Discord.EmbedBuilder()
         .setTitle(`[#${issue.number}] ${issue.title}`)
         .setURL(issue.url)
-        .setAuthor({name: issue.user.login, iconURL: issue.user.avatar, url: issue.user.url})
-        .setFooter({ text: 'GitHub', iconURL: 'https://i.imgur.com/LGyvq8p.png'});
+        .setAuthor({ name: issue.user.login, iconURL: issue.user.avatar, url: issue.user.url })
+        .setFooter({ text: 'GitHub', iconURL: 'https://i.imgur.com/LGyvq8p.png' });
 
-      if (issue.type === 'issue') embed.addFields({name: 'Repozytorium', value: `${issue.owner}/${issue.repo}`});
+      if (issue.type === 'issue') embed.addFields({ name: 'Repozytorium', value: `${issue.owner}/${issue.repo}` });
 
-      if (issue.type === 'issue') embed.addFields({name: 'Typ', value: 'Issue'});
-      else if (issue.type === 'pull') embed.addFields({ name: 'Typ', value: 'Pull request'});
+      if (issue.type === 'issue') embed.addFields({ name: 'Typ', value: 'Issue' });
+      else if (issue.type === 'pull') embed.addFields({ name: 'Typ', value: 'Pull request' });
 
-      if (issue.open) embed.addFields({name: 'Stan', value: 'Otwarty'});
-      else embed.addFields({name: 'Stan', value: issue.type === 'pull' && issue.merged ? 'Merged' : 'Zamknięty'});
+      if (issue.open) embed.addFields({ name: 'Stan', value: 'Otwarty' });
+      else embed.addFields({ name: 'Stan', value: issue.type === 'pull' && issue.merged ? 'Merged' : 'Zamknięty' });
 
-      if (issue.type === 'pull' && issue.open) embed.addFields({ name: 'Wersja robocza', value: issue.draft ? 'Tak' : 'Nie'});
+      if (issue.type === 'pull' && issue.open) embed.addFields({ name: 'Draft', value: issue.draft ? 'Tak' : 'Nie' });
 
       if (issue.description) {
         embed.setDescription(prune(issue.description, 512, '\n(...)'));

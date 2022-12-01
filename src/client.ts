@@ -10,6 +10,7 @@ export default class Client extends Discord.Client {
         Discord.GatewayIntentBits.Guilds,
         Discord.GatewayIntentBits.GuildMembers,
         Discord.GatewayIntentBits.GuildMessages,
+        Discord.GatewayIntentBits.MessageContent,
       ],
     });
     this.config = config;
